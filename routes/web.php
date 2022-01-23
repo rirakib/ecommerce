@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BackendController;
 use App\Http\Controllers\FrontendController;
+use App\Http\Controllers\RegisterController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,3 +28,9 @@ Route::get('/contact',[FrontendController::class,'contact'])->name('contact');
 
 Route::get('/login',[AuthController::class,'login'])->name('login');
 Route::get('/register',[AuthController::class,'register'])->name('register');
+
+
+Route::post('/register',[RegisterController::class,'store'])->name('register.store');
+
+
+Route::get('/dashboard',[BackendController::class,'dashboard'])->name('dashboard');
