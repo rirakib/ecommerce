@@ -16,18 +16,29 @@
                 <div class=" main-content-area">
                     <div class="wrap-login-item ">
                         <div class="login-form form-item form-stl">
-                            <form name="frm-login">
+                            <form action="{{route('login.data')}}" method="post">
+                                @csrf
                                 <fieldset class="wrap-title">
+                                    @if(session('error'))
+                                    <h3 class="form-title" style="color:red">{{session('error')}}</h3>
+                                    @else
                                     <h3 class="form-title">Log in to your account</h3>
+                                    @endif
                                 </fieldset>
                                 <fieldset class="wrap-input">
                                     <label for="frm-login-uname">Email Address:</label>
                                     <input type="text" id="frm-login-uname" name="email"
-                                        placeholder="Type your email address">
+                                    value="{{ old('email') }}" class="@error('email') is-invalid @enderror"   placeholder="Type your email address">
+                                    @error('email')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
                                 </fieldset>
                                 <fieldset class="wrap-input">
                                     <label for="frm-login-pass">Password:</label>
-                                    <input type="password" id="frm-login-pass" name="pass" placeholder="************">
+                                    <input type="password" id="frm-login-pass" class="@error('password') is-invalid @enderror" name="password" placeholder="************">
+                                    @error('password')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
                                 </fieldset>
 
                                 <fieldset class="wrap-input">

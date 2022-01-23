@@ -44,6 +44,15 @@ class Kernel extends HttpKernel
             'throttle:api',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
+        'protected_home' => [
+            
+            \App\Http\Middleware\homeProtected::class,
+        ],
+        'admin_check' => [
+            
+            \App\Http\Middleware\adminCheck::class,
+        ],
+        
     ];
 
     /**
@@ -63,5 +72,6 @@ class Kernel extends HttpKernel
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+        // 'protected_home' => \App\Http\Middleware\homeProtected::class,
     ];
 }

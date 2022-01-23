@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BackendController;
 use App\Http\Controllers\FrontendController;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use Illuminate\Support\Facades\Route;
 
@@ -18,11 +19,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/',[FrontendController::class,'home'])->name('home');
-Route::get('/shop',[FrontendController::class,'shop'])->name('shop');
-Route::get('/about-us',[FrontendController::class,'about'])->name('about');
-Route::get('/cart',[FrontendController::class,'cart'])->name('cart');
-Route::get('/checkout',[FrontendController::class,'checkout'])->name('checkout');
-Route::get('/contact',[FrontendController::class,'contact'])->name('contact');
+
 
 
 
@@ -31,6 +28,21 @@ Route::get('/register',[AuthController::class,'register'])->name('register');
 
 
 Route::post('/register',[RegisterController::class,'store'])->name('register.store');
+Route::post('/login',[LoginController::class,'login'])->name('login.data');
+Route::get('/logout',[LoginController::class,'logout'])->name('logout');
 
 
-Route::get('/dashboard',[BackendController::class,'dashboard'])->name('dashboard');
+Route::group(['middleware'=>['protected_home']],function(){
+    Route::get('/shop',[FrontendController::class,'shop'])->name('shop');
+    Route::get('/about-us',[FrontendController::class,'about'])->name('about');
+    Route::get('/cart',[FrontendController::class,'cart'])->name('cart');
+    Route::get('/checkout',[FrontendController::class,'checkout'])->name('checkout');
+    Route::get('/contact',[FrontendController::class,'contact'])->name('contact');
+});
+
+
+Route::group(['middleware'=>['admin_check']],function(){
+    Route::get('/dashboard',[BackendController::class,'dashboard'])->name('dashboard');
+});
+
+

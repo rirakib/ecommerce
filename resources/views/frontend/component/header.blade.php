@@ -13,47 +13,23 @@
                     </div>
                     <div class="topbar-menu right-menu">
                         <ul>
-                            <li class="menu-item"><a title="Register or Login" href="{{route('login')}}">Login</a></li>
-                            <li class="menu-item"><a title="Register or Login" href="{{route('register')}}">Register</a></li>
-                            <li class="menu-item lang-menu menu-item-has-children parent">
-                                <a title="English" href="#"><span class="img label-before"><img
-                                            src="{{asset('frontend/assets/images/lang-en.png')}}"
-                                            alt="lang-en"></span>English<i class="fa fa-angle-down"
-                                        aria-hidden="true"></i></a>
-                                <ul class="submenu lang">
-                                    <li class="menu-item"><a title="hungary" href="#"><span
-                                                class="img label-before"><img
-                                                    src="{{asset('frontend/assets/images/lang-hun.png')}}"
-                                                    alt="lang-hun"></span>Hungary</a></li>
-                                    <li class="menu-item"><a title="german" href="#"><span class="img label-before"><img
-                                                    src="{{asset('frontend/assets/images/lang-ger.png')}}"
-                                                    alt="lang-ger"></span>German</a>
-                                    </li>
-                                    <li class="menu-item"><a title="french" href="#"><span class="img label-before"><img
-                                                    src="{{asset('frontend/assets/images/lang-fra.png')}}"
-                                                    alt="lang-fre"></span>French</a>
-                                    </li>
-                                    <li class="menu-item"><a title="canada" href="#"><span class="img label-before"><img
-                                                    src="{{asset('frontend/assets/images/lang-can.png')}}"
-                                                    alt="lang-can"></span>Canada</a>
-                                    </li>
-                                </ul>
-                            </li>
+                            @if(session()->has('email'))
                             <li class="menu-item menu-item-has-children parent">
-                                <a title="Dollar (USD)" href="#">Dollar (USD)<i class="fa fa-angle-down"
+                                <a href="#">{{session()->get('email')}}<i class="fa fa-angle-down"
                                         aria-hidden="true"></i></a>
                                 <ul class="submenu curency">
                                     <li class="menu-item">
-                                        <a title="Pound (GBP)" href="#">Pound (GBP)</a>
+                                        <a href="#">Profile</a>
                                     </li>
                                     <li class="menu-item">
-                                        <a title="Euro (EUR)" href="#">Euro (EUR)</a>
-                                    </li>
-                                    <li class="menu-item">
-                                        <a title="Dollar (USD)" href="#">Dollar (USD)</a>
+                                        <a href="{{route('logout')}}">Logout</a>
                                     </li>
                                 </ul>
                             </li>
+                            @else
+                            <li class="menu-item"><a title="Register or Login" href="{{route('login')}}">Login</a></li>
+                            <li class="menu-item"><a title="Register or Login" href="{{route('register')}}">Register</a></li>
+                            @endif
                         </ul>
                     </div>
                 </div>
