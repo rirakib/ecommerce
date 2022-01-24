@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class adminCheck
 {
@@ -17,16 +17,15 @@ class adminCheck
      */
     public function handle(Request $request, Closure $next)
     {
-        if(Session()->has('email'))
+        if(Auth::check())
         {
-            if($request->is_admin == 1)
+            if(Auth::users()->is_admin == 1)
             {
                 return $next($request);
             }
             else{
                 return redirect()->route('home');
             }
-            
         }
         else{
             return redirect()->route('login');

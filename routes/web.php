@@ -38,6 +38,10 @@ Route::group(['middleware'=>['protected_home']],function(){
     Route::get('/cart',[FrontendController::class,'cart'])->name('cart');
     Route::get('/checkout',[FrontendController::class,'checkout'])->name('checkout');
     Route::get('/contact',[FrontendController::class,'contact'])->name('contact');
+    Route::get('/profile',[FrontendController::class,'profile'])->name('profile');
+    Route::get('/privacy',[FrontendController::class,'privacy'])->name('privacy');
+    Route::get('/term-condition',[FrontendController::class,'term'])->name('term');
+    Route::get('/return-policy',[FrontendController::class,'return'])->name('return');
 });
 
 

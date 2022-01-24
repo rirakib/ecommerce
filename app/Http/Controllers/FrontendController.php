@@ -26,4 +26,16 @@ class FrontendController extends Controller
     public function contact(){
         return view('frontend.contact.contact');
     }
+    public function profile(){
+        return view('frontend.profile.profile');
+    }
+    public function privacy(){
+        return view('frontend.privacy.privacy');
+    }
+    public function term(){
+        return view('frontend.term.term');
+    }
+    public function return(){
+        return view('frontend.return.return');
+    }
 }

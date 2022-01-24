@@ -19,7 +19,7 @@
                                         aria-hidden="true"></i></a>
                                 <ul class="submenu curency">
                                     <li class="menu-item">
-                                        <a href="#">Profile</a>
+                                        <a href="{{route('profile')}}">Profile</a>
                                     </li>
                                     <li class="menu-item">
                                         <a href="{{route('logout')}}">Logout</a>
