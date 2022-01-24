@@ -74,6 +74,7 @@ class CategoryController extends Controller
     public function show(Category $category)
     {
         //
+        
     }
 
     /**
@@ -82,9 +83,11 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function edit(Category $category)
+    public function edit($id)
     {
         //
+        $category = Category::find($id);
+        return view('backend.category.edit',compact('category'));
     }
 
     /**
@@ -97,6 +100,18 @@ class CategoryController extends Controller
     public function update(Request $request, Category $category)
     {
         //
+
+        $data = $request->all();
+        $validated = $request->validate([
+            'cat_id' => 'required',
+            'name' => 'required',
+            'short_description' => 'required | max:50',
+        ]);
+
+        
+        $category->update($data);
+        return redirect()->back()->with('stutus','Category updated successfullly');
+        
     }
 
     /**
@@ -105,8 +120,12 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Category $category)
+    public function destroy($id)
     {
         //
+        $category = Category::find($id);
+        $category->delete();
+
+        return redirect()->back()->with('delete','Category deleted successfully');
     }
 }

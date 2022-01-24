@@ -33,7 +33,11 @@
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="x_panel">
                 <div class="x_title">
-                    <h2>Category List</h2>
+                    @if(session('delete'))
+                        <h2 style="color:red">{{session('delete')}}</h2>
+                    @else
+                        <h2>Category List</h2>
+                    @endif
                     <ul class="nav navbar-right panel_toolbox">
                         <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                         </li>
@@ -89,8 +93,13 @@
                                     @else
                                         <td class=" ">Deactive</td>
                                     @endif
-                                    <td class="a-right a-right"><a href="" class="btn btn-success">Edit</a></td>
-                                    <td class=" last"><a href="#" class="btn btn-danger">Delete</a>
+                                    <td class="a-right a-right"><a href="{{route('dashboard.category.edit',$data->id)}}" class="btn btn-success">Edit</a></td>
+                                    <td class=" last">
+                                        <form action="{{route('dashboard.category.destroy',$data->id)}}" method="POST">
+                                            @csrf 
+                                            @method('Delete')
+                                            <button type="submit" class="btn btn-danger">Delete</button>
+                                        </form>
                                     </td>
                                 </tr>
                                 @endforeach
