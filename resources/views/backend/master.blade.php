@@ -13,6 +13,7 @@
 
     <!-- Bootstrap -->
     <link href="{{asset('backend/vendors/bootstrap/dist/css/bootstrap.min.css')}}" rel="stylesheet">
+    
     <!-- Font Awesome -->
     <link href="{{asset('backend/vendors/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet">
     <!-- NProgress -->
@@ -30,6 +31,40 @@
 
     <!-- Custom Theme Style -->
     <link href="{{asset('backend/build/css/custom.min.css')}}" rel="stylesheet">
+
+    <style>
+        .wrap-breadcrumb ul {
+            padding: 0;
+            text-align: left;
+            margin: 35px 0;
+        }
+
+        .wrap-breadcrumb ul li {
+            display: inline-block;
+            list-style: none;
+            text-align: left;
+        }
+
+        .wrap-breadcrumb ul li:not(:last-child)::after {
+            content: '/';
+            font-size: 13px;
+            color: #222222;
+            padding-left: 11px;
+            padding-right: 11px;
+        }
+
+        .wrap-breadcrumb ul a {
+            font-size: 13px;
+            color: #666666;
+            text-transform: uppercase;
+        }
+
+        .wrap-breadcrumb ul span {
+            font-size: 13px;
+            color: #222222;
+            text-transform: uppercase;
+        }
+    </style>
 </head>
 
 <body class="nav-md">
@@ -44,11 +79,11 @@
             <!-- /top navigation -->
 
             <!-- page content -->
-                @yield('admin_content')
+            @yield('admin_content')
             <!-- /page content -->
 
             <!-- footer content -->
-           @include('backend.component.footer')
+            @include('backend.component.footer')
             <!-- /footer content -->
         </div>
     </div>

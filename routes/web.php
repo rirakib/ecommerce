@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BackendController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
@@ -45,8 +46,11 @@ Route::group(['middleware'=>['protected_home']],function(){
 });
 
 
-Route::group(['middleware'=>['admin_check']],function(){
-    Route::get('/dashboard',[BackendController::class,'dashboard'])->name('dashboard');
-});
+
+Route::get('/dashboard',[BackendController::class,'dashboard'])->name('dashboard');
+
+//Dashboard Category Controller--------------
+Route::resource('/dashboard/category',CategoryController::class,['names' => 'dashboard.category']);
+
 
 
