@@ -6,6 +6,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\SizeController;
 use App\Http\Controllers\SubcategoryController;
 use App\Http\Controllers\UnitController;
 use Illuminate\Support\Facades\Route;
@@ -59,5 +60,8 @@ Route::resource('/dashboard/sub-category',SubcategoryController::class,['names' 
 
 //Unit Controller 
 Route::resource('/dashboard/unit',UnitController::class,['name'=> 'dashboard.unit']);
+
+//Size Controller
+Route::resource('/dashboard/size',SizeController::class,['name'=> 'dashboard.size']);
 
 
