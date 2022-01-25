@@ -15,6 +15,8 @@ class UnitController extends Controller
     public function index()
     {
         //
+        $unit = Unit::all();
+        return view('backend.unit.index',compact('unit'));
     }
 
     /**
@@ -25,6 +27,7 @@ class UnitController extends Controller
     public function create()
     {
         //
+        return view('backend.unit.create');
     }
 
     /**
@@ -36,6 +39,16 @@ class UnitController extends Controller
     public function store(Request $request)
     {
         //
+        $unit = new Unit;
+        $validated = $request->validate([
+            'name' => 'required | unique:units',
+            'short_description' => 'required | max:50',
+        ]);
+
+        $unit->name = $request->input('name');
+        $unit->short_description = $request->input('short_description');
+        $unit->save();
+        return redirect()->back()->with('stutus','Unit created successfullly');
     }
 
     /**
@@ -55,9 +68,11 @@ class UnitController extends Controller
      * @param  \App\Models\Unit  $unit
      * @return \Illuminate\Http\Response
      */
-    public function edit(Unit $unit)
+    public function edit($id)
     {
         //
+        $unit = Unit::find($id);
+        return view('backend.unit.edit',compact('unit'));
     }
 
     /**
@@ -70,6 +85,15 @@ class UnitController extends Controller
     public function update(Request $request, Unit $unit)
     {
         //
+        $data = $request->all();
+        $validated = $request->validate([
+            'name' => 'required',
+            'short_description' => 'required | max:50',
+        ]);
+
+        
+        $unit->update($data);
+        return redirect()->back()->with('stutus','Unit updated successfullly');
     }
 
     /**
@@ -78,8 +102,12 @@ class UnitController extends Controller
      * @param  \App\Models\Unit  $unit
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Unit $unit)
+    public function destroy($id)
     {
         //
+        $unit = Unit::find($id);
+        $unit->delete();
+
+        return redirect()->back()->with('delete','Unit deleted successfully');
     }
 }

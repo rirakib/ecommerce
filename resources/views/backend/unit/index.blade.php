@@ -10,7 +10,7 @@
                 <div class="wrap-breadcrumb">
                     <ul>
                         <li class="item-link"><a href="{{route('dashboard')}}" class="link">Dashboard</a></li>
-                        <li class="item-link"><a href="{{route('dashboard.subcategory.index')}}" class="link">Subcategory</a>
+                        <li class="item-link"><a href="{{route('unit.index')}}" class="link">Unit</a>
                         </li>
                     </ul>
                 </div>
@@ -36,7 +36,7 @@
                     @if(session('delete'))
                         <h2 style="color:red">{{session('delete')}}</h2>
                     @else
-                        <h2>Subcategory List</h2>
+                        <h2>Unit List</h2>
                     @endif
                     <ul class="nav navbar-right panel_toolbox">
                         <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
@@ -64,12 +64,8 @@
                         <table class="table table-striped jambo_table bulk_action">
                             <thead>
                                 <tr class="headings">
-                                    <th class="column-title">Sub Id </th>
-                                    <th class="column-title">Image </th>
                                     <th class="column-title">Name </th>
-                                    <th class="column-title">Category Name </th>
                                     <th class="column-title">Description </th>
-                                    <th class="column-title">Status </th>
                                     <th class="column-title">Edit </th>
                                     <th class="column-title no-link last"><span class="nobr">Delete</span>
                                     </th>
@@ -77,27 +73,19 @@
                             </thead>
 
                             <tbody>
-                                @if(count($subcategory) == 0)
+                                @if(count($unit) == 0)
                                     <tr class="odd pointer">
                                         <td colspan="7" style="text-align:center">There have no category data</td>
                                     </tr>
                                 @else
 
-                                @foreach($subcategory as $data)
+                                @foreach($unit as $data)
                                 <tr class="even pointer">
-                                    <td class=" ">{{$data->subcat_id}}</td>
-                                    <td class=" "><img src="{{asset('images/subcategory/'.$data->image)}}" class="img_td" alt=""></td>
                                     <td class=" ">{{$data->name}}</td>
-                                    <td class=" ">{{$data->category->name}}</td>
                                     <td class=" ">{{$data->short_description}}</td>
-                                    @if($data->subcat_stutus == 1)
-                                        <td class=" ">Active</td>
-                                    @else
-                                        <td class=" ">Deactive</td>
-                                    @endif
-                                    <td class="a-right a-right"><a href="{{route('dashboard.subcategory.edit',$data->id)}}" class="btn btn-success">Edit</a></td>
+                                    <td class="a-right a-right"><a href="{{route('unit.edit',$data->id)}}" class="btn btn-success">Edit</a></td>
                                     <td class=" last">
-                                        <form action="{{route('dashboard.subcategory.destroy',$data->id)}}" method="POST">
+                                        <form action="{{route('unit.destroy',$data->id)}}" method="POST">
                                             @csrf 
                                             @method('Delete')
                                             <button type="submit" class="btn btn-danger">Delete</button>
@@ -120,15 +108,5 @@
 
     </div>
 </div>
-
-<style>
-     img{
-        height: 40px;
-        width: 40px;
-        border-radius: 50%;
-        object-fit: cover;
-        object-position: center;
-    }
-</style>
 
 @endsection

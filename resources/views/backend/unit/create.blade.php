@@ -9,10 +9,10 @@
                 <div class="wrap-breadcrumb">
                     <ul>
                         <li class="item-link"><a href="{{route('dashboard')}}" class="link">Dashboard</a></li>
-                        <li class="item-link"><a href="{{route('dashboard.subcategory.index')}}"
-                                class="link">Subcategory</a>
+                        <li class="item-link"><a href="{{route('unit.index')}}"
+                                class="link">Unit</a>
                         </li>
-                        <li class="item-link"><a href="{{route('dashboard.subcategory.create')}}"
+                        <li class="item-link"><a href="{{route('unit.create')}}"
                                 class="link">Create</a>
                         </li>
                     </ul>
@@ -29,7 +29,7 @@
                         @if(session('stutus'))
                         <h2 style="color:green">{{session('stutus')}}</h2>
                         @else
-                        <h2>Create Subcategory</h2>
+                        <h2>Create Unit</h2>
                         @endif
                         <ul class="nav navbar-right panel_toolbox">
                             <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
@@ -51,45 +51,18 @@
                     </div>
                     <div class="x_content">
                         <br />
-                        <form id="demo-form2" action="{{route('dashboard.subcategory.store')}}" method="POST"
+                        <form id="demo-form2" action="{{route('unit.store')}}" method="POST"
                             enctype="multipart/form-data" data-parsley-validate class="form-horizontal form-label-left">
                             @csrf
                             <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="cat_id">Subcategory Id
-                                    <span class="required">*</span>
-                                </label>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input type="text" id="cat_id" name="subcat_id" required="required"
-                                        placeholder="Must be unique"
-                                        class="form-control col-md-7 col-xs-12 @error('subcat_id') is-invalid @enderror">
-                                    @error('subcat_id')
-                                    <div class="alert alert-danger">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Subcategory Name <span
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Unit Name <span
                                         class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <input type="text" id="name" name="name" required="required"
                                         class="form-control col-md-7 col-xs-12 @error('name') is-invalid @enderror"
-                                        placeholder="Subcategory Name">
+                                        placeholder="Unit Name">
                                     @error('name')
-                                    <div class="alert alert-danger">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Select Category</label>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <select class="form-control" name="cat_id" class="@error('cat_id') is-invalid @enderror">
-                                        <option>Choose Category</option>
-                                        @foreach(DB::table('categories')->get() as $category)
-                                            <option value="{{$category->id}}">{{$category->name}}</option>
-                                        @endforeach
-                                    </select>
-                                    @error('cat_id')
                                     <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
@@ -103,19 +76,6 @@
                                         class="form-control col-md-7 col-xs-12 @error('short_description') is-invalid @enderror"
                                         type="text" name="short_description" placeholder="Maximum 40 words">
                                     @error('short_description')
-                                    <div class="alert alert-danger">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="image" class="control-label col-md-3 col-sm-3 col-xs-12">Subcategory Image
-                                </label>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input id="image"
-                                        class="form-control col-md-7 col-xs-12 @error('image') is-invalid @enderror"
-                                        type="file" name="image">
-                                    @error('image')
                                     <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
