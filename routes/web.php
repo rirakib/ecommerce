@@ -6,6 +6,8 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\SubcategoryController;
+use App\Http\Controllers\UnitController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -52,5 +54,10 @@ Route::get('/dashboard',[BackendController::class,'dashboard'])->name('dashboard
 //Dashboard Category Controller--------------
 Route::resource('/dashboard/category',CategoryController::class,['names' => 'dashboard.category']);
 
+//Subcategory Controller
+Route::resource('/dashboard/sub-category',SubcategoryController::class,['names' => 'dashboard.subcategory']);
+
+//Unit Controller 
+Route::resource('/dashboard/unit',UnitController::class,['name'=> 'dashboard.unit']);
 
 
