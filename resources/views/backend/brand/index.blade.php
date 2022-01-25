@@ -1,5 +1,5 @@
 @extends('backend.master')
-@section('admin_title','Color')
+@section('admin_title','Brand')
 @section('admin_content')
 
 
@@ -10,7 +10,7 @@
                 <div class="wrap-breadcrumb">
                     <ul>
                         <li class="item-link"><a href="{{route('dashboard')}}" class="link">Dashboard</a></li>
-                        <li class="item-link"><a href="{{route('color.index')}}" class="link">Color</a>
+                        <li class="item-link"><a href="{{route('brand.index')}}" class="link">Brand</a>
                         </li>
                     </ul>
                 </div>
@@ -36,7 +36,7 @@
                     @if(session('delete'))
                         <h2 style="color:red">{{session('delete')}}</h2>
                     @else
-                        <h2>Color List</h2>
+                        <h2>Brand List</h2>
                     @endif
                     <ul class="nav navbar-right panel_toolbox">
                         <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
@@ -64,6 +64,7 @@
                         <table class="table table-striped jambo_table bulk_action">
                             <thead>
                                 <tr class="headings">
+                                    <th class="column-title">Image </th>
                                     <th class="column-title">Name </th>
                                     <th class="column-title">Description </th>
                                     <th class="column-title">Edit </th>
@@ -73,19 +74,20 @@
                             </thead>
 
                             <tbody>
-                                @if(count($color) == 0)
+                                @if(count($brand) == 0)
                                     <tr class="odd pointer">
-                                        <td colspan="7" style="text-align:center">There have no  data</td>
+                                        <td colspan="7" style="text-align:center">There have no data</td>
                                     </tr>
                                 @else
 
-                                @foreach($color as $data)
+                                @foreach($brand as $data)
                                 <tr class="even pointer">
+                                    <td class=" "><img src="{{asset('images/brand/'.$data->image)}}" class="img_td" alt=""></td>
                                     <td class=" ">{{$data->name}}</td>
                                     <td class=" ">{{$data->short_description}}</td>
-                                    <td class="a-right a-right"><a href="{{route('color.edit',$data->id)}}" class="btn btn-success">Edit</a></td>
+                                    <td class="a-right a-right"><a href="{{route('brand.edit',$data->id)}}" class="btn btn-success">Edit</a></td>
                                     <td class=" last">
-                                        <form action="{{route('color.destroy',$data->id)}}" method="POST">
+                                        <form action="{{route('brand.destroy',$data->id)}}" method="POST">
                                             @csrf 
                                             @method('Delete')
                                             <button type="submit" class="btn btn-danger">Delete</button>
@@ -108,5 +110,15 @@
 
     </div>
 </div>
+
+<style>
+     img{
+        height: 40px;
+        width: 40px;
+        border-radius: 50%;
+        object-fit: cover;
+        object-position: center;
+    }
+</style>
 
 @endsection

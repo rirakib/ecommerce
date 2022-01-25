@@ -78,7 +78,7 @@
                             <tbody>
                                 @if(count($category) == 0)
                                     <tr class="odd pointer">
-                                        <td colspan="7" style="text-align:center">There have no category data</td>
+                                        <td colspan="7" style="text-align:center">There have no data</td>
                                     </tr>
                                 @else
 

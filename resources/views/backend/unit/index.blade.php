@@ -1,5 +1,5 @@
 @extends('backend.master')
-@section('admin_title','Subcategory')
+@section('admin_title','Unit')
 @section('admin_content')
 
 
@@ -75,7 +75,7 @@
                             <tbody>
                                 @if(count($unit) == 0)
                                     <tr class="odd pointer">
-                                        <td colspan="7" style="text-align:center">There have no category data</td>
+                                        <td colspan="7" style="text-align:center">There have no data</td>
                                     </tr>
                                 @else
 

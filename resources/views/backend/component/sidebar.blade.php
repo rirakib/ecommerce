@@ -60,6 +60,13 @@
                                     </ul>
                                 </li>
 
+                                <li><a><i class="fa fa-home"></i> Brand <span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu">
+                                        <li><a href="{{route('brand.index')}}">Index</a></li>
+                                        <li><a href="{{route('brand.create')}}">Create</a></li>
+                                    </ul>
+                                </li>
+
                                 
                             </ul>
                         </div>
