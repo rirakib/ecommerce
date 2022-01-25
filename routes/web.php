@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BackendController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ColorController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
@@ -63,5 +64,8 @@ Route::resource('/dashboard/unit',UnitController::class,['name'=> 'dashboard.uni
 
 //Size Controller
 Route::resource('/dashboard/size',SizeController::class,['name'=> 'dashboard.size']);
+
+//Color Controller 
+Route::resource('/dashboard/color',ColorController::class,['name'=>'dashboard.color']);
 
 

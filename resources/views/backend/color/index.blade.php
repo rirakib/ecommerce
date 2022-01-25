@@ -1,5 +1,5 @@
 @extends('backend.master')
-@section('admin_title','Subcategory')
+@section('admin_title','Color')
 @section('admin_content')
 
 
@@ -10,7 +10,7 @@
                 <div class="wrap-breadcrumb">
                     <ul>
                         <li class="item-link"><a href="{{route('dashboard')}}" class="link">Dashboard</a></li>
-                        <li class="item-link"><a href="{{route('unit.index')}}" class="link">Unit</a>
+                        <li class="item-link"><a href="{{route('color.index')}}" class="link">Color</a>
                         </li>
                     </ul>
                 </div>
@@ -36,7 +36,7 @@
                     @if(session('delete'))
                         <h2 style="color:red">{{session('delete')}}</h2>
                     @else
-                        <h2>Unit List</h2>
+                        <h2>Color List</h2>
                     @endif
                     <ul class="nav navbar-right panel_toolbox">
                         <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
@@ -73,19 +73,19 @@
                             </thead>
 
                             <tbody>
-                                @if(count($unit) == 0)
+                                @if(count($color) == 0)
                                     <tr class="odd pointer">
                                         <td colspan="7" style="text-align:center">There have no category data</td>
                                     </tr>
                                 @else
 
-                                @foreach($unit as $data)
+                                @foreach($color as $data)
                                 <tr class="even pointer">
                                     <td class=" ">{{$data->name}}</td>
                                     <td class=" ">{{$data->short_description}}</td>
-                                    <td class="a-right a-right"><a href="{{route('unit.edit',$data->id)}}" class="btn btn-success">Edit</a></td>
+                                    <td class="a-right a-right"><a href="{{route('color.edit',$data->id)}}" class="btn btn-success">Edit</a></td>
                                     <td class=" last">
-                                        <form action="{{route('unit.destroy',$data->id)}}" method="POST">
+                                        <form action="{{route('color.destroy',$data->id)}}" method="POST">
                                             @csrf 
                                             @method('Delete')
                                             <button type="submit" class="btn btn-danger">Delete</button>

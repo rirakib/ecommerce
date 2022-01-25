@@ -9,10 +9,10 @@
                 <div class="wrap-breadcrumb">
                     <ul>
                         <li class="item-link"><a href="{{route('dashboard')}}" class="link">Dashboard</a></li>
-                        <li class="item-link"><a href="{{route('unit.index')}}"
-                                class="link">Unit</a>
+                        <li class="item-link"><a href="{{route('color.index')}}"
+                                class="link">Color</a>
                         </li>
-                        <li class="item-link"><a href="{{route('unit.create')}}"
+                        <li class="item-link"><a href="{{route('color.create')}}"
                                 class="link">Create</a>
                         </li>
                     </ul>
@@ -51,17 +51,17 @@
                     </div>
                     <div class="x_content">
                         <br />
-                        <form id="demo-form2" action="{{route('unit.store')}}" method="POST"
+                        <form id="demo-form2" action="{{route('color.store')}}" method="POST"
                             enctype="multipart/form-data" data-parsley-validate class="form-horizontal form-label-left">
                             @csrf
                             <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Unit Name <span
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Color Name <span
                                         class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <input type="text" id="name" name="name" required="required"
                                         class="form-control col-md-7 col-xs-12 @error('name') is-invalid @enderror"
-                                        placeholder="Unit Name">
+                                        placeholder="Color Name">
                                     @error('name')
                                     <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror

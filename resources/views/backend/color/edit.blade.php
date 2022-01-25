@@ -10,7 +10,7 @@
                 <div class="wrap-breadcrumb">
                     <ul>
                         <li class="item-link"><a href="{{route('dashboard')}}" class="link">Dashboard</a></li>
-                        <li class="item-link"><a href="{{route('unit.index')}}" class="link">Unit</a>
+                        <li class="item-link"><a href="{{route('color.index')}}" class="link">Color</a>
                         </li>
                         <li class="item-link"><a  class="link">Edit</a>
                         </li>
@@ -50,18 +50,18 @@
                     </div>
                     <div class="x_content">
                         <br />
-                        <form id="demo-form2" action="{{route('unit.update',$unit->id)}}" method="POST"
+                        <form id="demo-form2" action="{{route('color.update',$color->id)}}" method="POST"
                             enctype="multipart/form-data" data-parsley-validate class="form-horizontal form-label-left">
                             @csrf
                             @method('PUT')
-                            <input type="hidden" name="" value="{{$unit->id}}">
+                            <input type="hidden" name="" value="{{$color->id}}">
                            
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Unit Name <span
                                         class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input type="text" id="name" name="name" value="{{$unit->name}}" required="required"
+                                    <input type="text" id="name" name="name" value="{{$color->name}}" required="required"
                                         class="form-control col-md-7 col-xs-12 @error('name') is-invalid @enderror"
                                         placeholder="Subcategory Name">
                                     @error('name')
@@ -77,7 +77,7 @@
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <input id="short_description"
                                         class="form-control col-md-7 col-xs-12 @error('short_description') is-invalid @enderror"
-                                        type="text" value="{{$unit->short_description}}" name="short_description" placeholder="Maximum 40 words">
+                                        type="text" value="{{$color->short_description}}" name="short_description" placeholder="Maximum 40 words">
                                     @error('short_description')
                                     <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
