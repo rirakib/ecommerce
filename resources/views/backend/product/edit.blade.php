@@ -1,6 +1,7 @@
 @extends('backend.master')
-@section('admin_title','Create')
+@section('admin_title','Category')
 @section('admin_content')
+
 
 <div class="right_col" role="main">
     <div class="">
@@ -11,7 +12,7 @@
                         <li class="item-link"><a href="{{route('dashboard')}}" class="link">Dashboard</a></li>
                         <li class="item-link"><a href="{{route('dashboard.category.index')}}" class="link">Category</a>
                         </li>
-                        <li class="item-link"><a href="{{route('dashboard.category.create')}}" class="link">Create</a>
+                        <li class="item-link"><a  class="link">Edit</a>
                         </li>
                     </ul>
                 </div>
@@ -27,7 +28,7 @@
                         @if(session('stutus'))
                         <h2 style="color:green">{{session('stutus')}}</h2>
                         @else
-                        <h2>Create Category</h2>
+                        <h2>Edit Category</h2>
                         @endif
                         <ul class="nav navbar-right panel_toolbox">
                             <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
@@ -49,9 +50,11 @@
                     </div>
                     <div class="x_content">
                         <br />
-                        <form id="demo-form2" action="{{route('dashboard.category.store')}}" method="POST"
+                        <form id="demo-form2" action="{{route('dashboard.category.update',$category->id)}}" method="POST"
                             enctype="multipart/form-data" data-parsley-validate class="form-horizontal form-label-left">
                             @csrf
+                            @method('PUT')
+                            <input type="hidden" name="" value="{{$category->id}}">
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="cat_id">Category Id
                                     <span class="required">*</span>
@@ -59,6 +62,7 @@
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <input type="text" id="cat_id" name="cat_id"
                                          required="required"
+                                         value="{{$category->cat_id}}"
                                         placeholder="Must be unique" class="form-control col-md-7 col-xs-12 @error('cat_id') is-invalid @enderror">
                                     @error('cat_id')
                                     <div class="alert alert-danger">{{ $message }}</div>
@@ -71,6 +75,7 @@
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <input type="text" id="name" name="name" 
+                                        value="{{$category->name}}"
                                         required="required" class="form-control col-md-7 col-xs-12 @error('name') is-invalid @enderror"
                                         placeholder="Category Name">
                                     @error('name')
@@ -85,6 +90,7 @@
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <input id="short_description" class="form-control col-md-7 col-xs-12 @error('short_description') is-invalid @enderror" type="text"
                                         name="short_description"
+                                        value="{{$category->short_description}}"
                                         placeholder="Maximum 40 words">
                                     @error('short_description')
                                     <div class="alert alert-danger">{{ $message }}</div>
@@ -96,7 +102,7 @@
                                 <label for="image" class="control-label col-md-3 col-sm-3 col-xs-12">Category Image
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input id="image" class="form-control col-md-7 col-xs-12 @error('image') is-invalid @enderror" type="file" name="image"
+                                    <input id="image" value="{{$category->image}}" class="form-control col-md-7 col-xs-12 @error('image') is-invalid @enderror" type="file" name="image"
                                     >
                                     @error('image')
                                     <div class="alert alert-danger">{{ $message }}</div>
