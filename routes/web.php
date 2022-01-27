@@ -7,6 +7,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ColorController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SizeController;
 use App\Http\Controllers\SubcategoryController;
@@ -71,6 +72,9 @@ Route::resource('/dashboard/color',ColorController::class,['name'=>'dashboard.co
 
 //Brand Controller
 Route::resource('/dashboard/brand',BrandController::class,['name'=>'dashboard.brand']);
+
+//Product Controller 
+Route::resource('/dashboard/product',ProductController::class,['name'=>'dashboard.product']);
 
 
 

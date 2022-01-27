@@ -50,7 +50,7 @@
                                 </fieldset>
                                 <fieldset class="wrap-input item-width-in-half left-item ">
                                     <label for="frm-reg-pass">Password *</label>
-                                    <input type="text" id="frm-reg-pass" name="password" class="@error('password') is-invalid @enderror" placeholder="Password">
+                                    <input type="password" id="frm-reg-pass" name="password" class="@error('password') is-invalid @enderror" placeholder="Password">
                                     @error('password')
                                     <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
