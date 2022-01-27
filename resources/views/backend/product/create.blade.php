@@ -49,7 +49,7 @@
                     </div>
                     <div class="x_content">
                         <br />
-                        <form class="form-horizontal form-label-left">
+                        <form action="" method="POST" class="form-horizontal form-label-left" enctype="multipart/form-data">
                             <div class="row ">
                                 <div class="form-group col-md-6">
                                     <label class="control-label col-md-3" for="product_id">Product Id <span
@@ -76,7 +76,7 @@
                                 <div class="form-group col-md-6">
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12">Category</label>
                                     <div class="col-md-7 col-sm-9 col-xs-12">
-                                        <select class="form-control" name="cat_id">
+                                        <select class="form-control" id="cat_id" name="cat_id">
                                             <option>Choose Category</option>
                                             @foreach(DB::table('categories')->orderBy('name','asc')->get() as $data)
                                             <option value="{{$data->id}}">{{$data->name}}</option>
@@ -87,11 +87,8 @@
                                 <div class="form-group col-md-6">
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12">Subcategory</label>
                                     <div class="col-md-7 col-sm-9 col-xs-12">
-                                        <select class="form-control" name="subcat_id">
+                                        <select class="form-control" id="subcategory" name="subcat_id">
                                             <option>Choose Subcategory</option>
-                                            @foreach(DB::table('subcategories')->orderBy('name','asc')->get() as $data)
-                                            <option value="{{$data->id}}">{{$data->name}}</option>
-                                            @endforeach
                                         </select>
                                     </div>
                                 </div>
@@ -211,10 +208,49 @@
                                 </div>
                             </div>
 
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12"
+                                        for="short_description">Short
+                                        Description</label>
+                                    <div class="col-md-9 col-sm-9 col-xs-12">
+                                        <input type="text" class="form-control" id="short_description"
+                                            name="short_description">
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <label for="image" class="control-label col-md-3 col-sm-3 col-xs-12">Main Image
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <input id="image" class="form-control col-md-7 col-xs-12" type="file"
+                                            name="image">
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <label for="multiple_images"
+                                        class="control-label col-md-3 col-sm-3 col-xs-12">Display
+                                        Images
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <input id="multiple_images" class="form-control col-md-7 col-xs-12" type="file"
+                                            name="multiple_images">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="ln_solid mb-3"></div>
                             <div class="form-group col-md-6">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="short_description">Short Description</label>
-                                <div class="col-md-9 col-sm-9 col-xs-12">
-                                    <input type="text" class="form-control" id="short_description" name="short_description">
+                                <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                                    <button class="btn btn-primary" type="reset">Reset</button>
+                                    <button type="submit" class="btn btn-success">Create Product</button>
                                 </div>
                             </div>
 

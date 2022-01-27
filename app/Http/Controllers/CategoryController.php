@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 
 class CategoryController extends Controller
@@ -127,5 +128,18 @@ class CategoryController extends Controller
         $category->delete();
 
         return redirect()->back()->with('delete','Category deleted successfully');
+    }
+
+    public function getData(Request $request)
+    {
+        $data = $request->post('cat');
+        $subcat= DB::table('subcategories')->where('cat_id',$data)->orderBy('name','asc')
+        ->get();
+        $html = "<option>Choose Option</option>";
+        foreach($subcat as $data)
+        {
+            $html.= "<option value='$data->id'>$data->name</option>";
+        }
+        echo $html;
     }
 }

@@ -57,6 +57,7 @@ Route::get('/dashboard',[BackendController::class,'dashboard'])->name('dashboard
 
 //Dashboard Category Controller--------------
 Route::resource('/dashboard/category',CategoryController::class,['names' => 'dashboard.category']);
+Route::post('/get/data',[CategoryController::class,'getData']);
 
 //Subcategory Controller
 Route::resource('/dashboard/sub-category',SubcategoryController::class,['names' => 'dashboard.subcategory']);

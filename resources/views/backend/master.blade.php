@@ -7,13 +7,12 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" href="images/favicon.ico" type="image/ico" />
-
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('admin_title')</title>
 
     <!-- Bootstrap -->
     <link href="{{asset('backend/vendors/bootstrap/dist/css/bootstrap.min.css')}}" rel="stylesheet">
-    
+
     <!-- Font Awesome -->
     <link href="{{asset('backend/vendors/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet">
     <!-- NProgress -->
@@ -134,6 +133,16 @@
     <!-- Custom Theme Scripts -->
     <script src="{{asset('backend/build/js/custom.min.js')}}"></script>
 
+    <!-- Ajax script  -->
+    <script src="{{asset('backend/ajax/ajax.js')}}"></script>
+
+    <script>
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+    </script>
 </body>
 
 </html>
