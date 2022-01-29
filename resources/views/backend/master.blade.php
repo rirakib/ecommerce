@@ -133,9 +133,12 @@
     <!-- Custom Theme Scripts -->
     <script src="{{asset('backend/build/js/custom.min.js')}}"></script>
 
+    
+
+
     <!-- Ajax script  -->
     <script src="{{asset('backend/ajax/ajax.js')}}"></script>
-
+    @yield('scripts')
     <script>
         $.ajaxSetup({
             headers: {

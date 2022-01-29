@@ -49,7 +49,9 @@
                     </div>
                     <div class="x_content">
                         <br />
-                        <form action="" method="POST" class="form-horizontal form-label-left" enctype="multipart/form-data">
+                        <form action="{{route('product.store')}}" method="POST" class="form-horizontal form-label-left"
+                            enctype="multipart/form-data">
+                            @csrf
                             <div class="row ">
                                 <div class="form-group col-md-6">
                                     <label class="control-label col-md-3" for="product_id">Product Id <span
@@ -150,7 +152,7 @@
                                             class="required">*</span>
                                     </label>
                                     <div class="col-md-7">
-                                        <input type="text" id="product_quantity" name="product_quantity"
+                                        <input type="number" min="0" id="product_quantity" name="product_quantity"
                                             required="required" class="form-control col-md-7 col-xs-12">
                                     </div>
                                 </div>
@@ -159,7 +161,7 @@
                                             class="required">*</span>
                                     </label>
                                     <div class="col-md-7">
-                                        <input type="text" id="price" name="price" required="required"
+                                        <input type="number" min="0" id="price" name="price" required="required"
                                             class="form-control col-md-7 col-xs-12">
                                     </div>
                                 </div>
@@ -180,7 +182,7 @@
                                             class="required">*</span>
                                     </label>
                                     <div class="col-md-7">
-                                        <input type="text" id="offer_price" name="offer_price" required="required"
+                                        <input type="number" min="0" id="offer_price" name="offer_price" required="required"
                                             class="form-control col-md-7 col-xs-12">
                                     </div>
                                 </div>
@@ -219,52 +221,68 @@
                                     </div>
                                 </div>
                             </div>
-
-
-                            <div class="row">
-                                <div class="form-group col-md-6">
-                                    <label for="image" class="control-label col-md-3 col-sm-3 col-xs-12">Main Image
-                                    </label>
-                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <input id="image" class="form-control col-md-7 col-xs-12" type="file"
-                                            name="image">
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <div class="row">
-                                <div class="form-group col-md-6">
-                                    <label for="multiple_images"
-                                        class="control-label col-md-3 col-sm-3 col-xs-12">Display
-                                        Images
-                                    </label>
-                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <input id="multiple_images" class="form-control col-md-7 col-xs-12" type="file"
-                                            name="multiple_images">
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="ln_solid mb-3"></div>
-                            <div class="form-group col-md-6">
-                                <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                                    <button class="btn btn-primary" type="reset">Reset</button>
-                                    <button type="submit" class="btn btn-success">Create Product</button>
-                                </div>
-                            </div>
-
-
-
-                        </form>
                     </div>
+
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <label for="multiple_images" class="control-label col-md-3 col-sm-3 col-xs-12">
+                                Description
+                            </label>
+                            <div class="col-md-12">
+                                <textarea name="description" id="description"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label for="image" class="control-label col-md-3 col-sm-3 col-xs-12">Main Image
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input id="image" class="form-control col-md-7 col-xs-12" type="file" name="image">
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label for="multiple_image" class="control-label col-md-3 col-sm-3 col-xs-12">Display
+                                Images
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input id="multiple_image" multiple class="form-control col-md-7 col-xs-12" type="file"
+                                    name="multiple_image[]">
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="ln_solid mb-3"></div>
+                    <div class="form-group col-md-6">
+                        <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                            <button class="btn btn-primary" type="reset">Reset</button>
+                            <button type="submit" class="btn btn-success">Create Product</button>
+                        </div>
+                    </div>
+
+
+
+                    </form>
                 </div>
             </div>
         </div>
-
-
     </div>
+
+
+</div>
 </div>
 
-
+@section('scripts')
+<script src="https://cdn.ckeditor.com/4.17.1/standard/ckeditor.js"></script>
+<script>
+    CKEDITOR.replace('description');
+</script>
+@endsection
 @endsection
