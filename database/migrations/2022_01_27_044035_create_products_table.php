@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use phpDocumentor\Reflection\Types\Nullable;
 
 class CreateProductsTable extends Migration
 {
@@ -33,11 +34,11 @@ class CreateProductsTable extends Migration
             $table->longText('description');
             $table->bigInteger('product_quantity');
             $table->boolean('product_stutus')->default(1);
-            $table->string('product_code');
-            $table->bigInteger('product_offer_price');
+            $table->string('product_code')->nullable();
+            $table->bigInteger('product_offer_price')->nullable();
             $table->bigInteger('price');
-            $table->date('offer_start_date');
-            $table->date('offer_end_date');
+            $table->date('offer_start_date')->nullable();
+            $table->date('offer_end_date')->nullable();
             $table->string('image');
             $table->string('multiple_image');
             $table->timestamps();

@@ -34,18 +34,19 @@ class ProductController extends Controller {
         //
         $product = new Product();
 
-        $product->product_id = $request->input('product_id');
+            $product->product_id = $request->input('product_id');
             $product->cat_id =$request->input('cat_id');
             $product->subcat_id = $request->input('subcat_id');
             $product->color_id = $request->input('color_id');
             $product->brand_id = $request->input('brand_id');
+            $product->size_id = $request->input('size_id');
             $product->unit_id = $request->input('unit_id');
             $product->name= $request->input('name');
             $product->short_description = $request->input('short_description');
             $product->description = $request->input('description');
             $product->price = $request->input('price');
             $product->product_code = $request->input('product_code');
-            $product->offer_price = $request->input('offer_price');
+            $product->product_offer_price = $request->input('product_offer_price');
             $product->offer_start_date = $request->input('offer_start_date');
             $product->offer_end_date = $request->input('offer_end_date');
             $product->product_quantity = $request->input('product_quantity');
@@ -74,35 +75,38 @@ class ProductController extends Controller {
         //     'multiple_image' => 'requried'
         // ]);
        
-        if($request->hasfile('image'))
+        if($file = $request->file('image'))
         {
-            $file = $request->file('image');
             $extention = $file->getClientOriginalExtension();
             $filename = time().'.'.$extention;
             $file->move('images/product/title', $filename);
             $product->image = $filename;
+        }
+        else{
+            echo "mian image";
         }
         
         $images = array();
         if($files = $request->file('multiple_image')){
             $i=0;
             foreach($files as $file){
-                $name = $file->getClientOriginalExtension();
+                $name = $file->getClientOriginalName();
                 $fileNameExtract = explode('.',$name);
                 $fileName=$fileNameExtract[0];
                 $fileName.=time();
-                dd($fileName);
                 $fileName.=$i;
                 $fileName.='.';
                 $fileName.=$fileNameExtract[1];
-                dd($fileName);
                 $file->move('images/product/display/',$fileName);
                 $image[]=$fileName;
                 $i++;
             }
+            $product['multiple_image'] = implode("|",$image);
         }
-        dd($product);
-        $product['multiple_image'] = implode("|",$images);
+        else{
+            echo "multiple";
+        }
+        
         
         $product->save();
         return redirect()->back();

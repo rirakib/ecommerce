@@ -173,16 +173,16 @@
                                             class="required">*</span>
                                     </label>
                                     <div class="col-md-7">
-                                        <input type="text" id="product_code" name="product_code" required="required"
+                                        <input type="text" id="product_code" name="product_code" 
                                             placeholder="Optional" class="form-control col-md-7 col-xs-12">
                                     </div>
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label class="control-label col-md-3" for="offer_price">Offer Price<span
+                                    <label class="control-label col-md-3" for="product_offer_price">Offer Price<span
                                             class="required">*</span>
                                     </label>
                                     <div class="col-md-7">
-                                        <input type="number" min="0" id="offer_price" name="offer_price" required="required"
+                                        <input type="number" min="0" id="product_offer_price" name="product_offer_price" 
                                             class="form-control col-md-7 col-xs-12">
                                     </div>
                                 </div>
@@ -195,7 +195,7 @@
                                     </label>
                                     <div class="col-md-7">
                                         <input type="date" id="offer_start_date" name="offer_start_date"
-                                            required="required" class="form-control col-md-7 col-xs-12">
+                                             class="form-control col-md-7 col-xs-12">
                                     </div>
                                 </div>
 
@@ -204,7 +204,7 @@
                                             class="required">*</span>
                                     </label>
                                     <div class="col-md-7">
-                                        <input type="date" id="offer_end_date" name="offer_end_date" required="required"
+                                        <input type="date" id="offer_end_date" name="offer_end_date" 
                                             class="form-control col-md-7 col-xs-12">
                                     </div>
                                 </div>
