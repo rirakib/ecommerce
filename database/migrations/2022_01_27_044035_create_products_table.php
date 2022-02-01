@@ -39,6 +39,7 @@ class CreateProductsTable extends Migration
             $table->bigInteger('price');
             $table->date('offer_start_date')->nullable();
             $table->date('offer_end_date')->nullable();
+            $table->string('product_type')->nullable();
             $table->string('image');
             $table->string('multiple_image');
             $table->timestamps();

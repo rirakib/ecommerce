@@ -1,5 +1,5 @@
 @extends('backend.master')
-@section('admin_title','Category')
+@section('admin_title','Product')
 @section('admin_content')
 
 
@@ -10,7 +10,7 @@
                 <div class="wrap-breadcrumb">
                     <ul>
                         <li class="item-link"><a href="{{route('dashboard')}}" class="link">Dashboard</a></li>
-                        <li class="item-link"><a href="{{route('dashboard.category.index')}}" class="link">Category</a>
+                        <li class="item-link"><a href="{{route('product.index')}}" class="link">Product</a>
                         </li>
                     </ul>
                 </div>
@@ -36,7 +36,7 @@
                     @if(session('delete'))
                         <h2 style="color:red">{{session('delete')}}</h2>
                     @else
-                        <h2>Category List</h2>
+                        <h2>Product List</h2>
                     @endif
                     <ul class="nav navbar-right panel_toolbox">
                         <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
@@ -67,7 +67,10 @@
                                     <th class="column-title">Id </th>
                                     <th class="column-title">Image </th>
                                     <th class="column-title">Name </th>
-                                    <th class="column-title">Description </th>
+                                    <th class="column-title">Category </th>
+                                    <th class="column-title">Subcategory </th>
+                                    <th class="column-title">Type </th>
+                                    <th class="column-title">Quantity </th>
                                     <th class="column-title">Status </th>
                                     <th class="column-title">Edit </th>
                                     <th class="column-title no-link last"><span class="nobr">Delete</span>
@@ -76,26 +79,29 @@
                             </thead>
 
                             <tbody>
-                                @if(count($category) == 0)
+                                @if(count($products) == 0)
                                     <tr class="odd pointer">
                                         <td colspan="7" style="text-align:center">There have no data</td>
                                     </tr>
                                 @else
 
-                                @foreach($category as $data)
+                                @foreach($products as $data)
                                 <tr class="even pointer">
-                                    <td class=" ">{{$data->cat_id}}</td>
-                                    <td class=" "><img src="{{asset('images/category/'.$data->image)}}" class="img_td" alt=""></td>
+                                    <td class=" ">{{$data->product_id}}</td>
+                                    <td class=" "><img src="{{asset('images/product/title/'.$data->image)}}" class="img_td" alt=""></td>
                                     <td class=" ">{{$data->name}}</td>
-                                    <td class=" ">{{$data->short_description}}</td>
-                                    @if($data->cat_stutus == 1)
+                                    <td class=" ">{{$data->category->name}}</td>
+                                    <td class=" ">{{$data->subcategory->name}}</td>
+                                    <td class=" ">{{$data->product_type}}</td>
+                                    <td class=" ">{{$data->product_quantity}}</td>
+                                    @if($data->product_stutus == 1)
                                         <td class=" ">Active</td>
                                     @else
                                         <td class=" ">Deactive</td>
                                     @endif
-                                    <td class="a-right a-right"><a href="{{route('dashboard.category.edit',$data->id)}}" class="btn btn-success">Edit</a></td>
+                                    <td class="a-right a-right"><a href="{{route('product.edit',$data->id)}}" class="btn btn-success">Edit</a></td>
                                     <td class=" last">
-                                        <form action="{{route('dashboard.category.destroy',$data->id)}}" method="POST">
+                                        <form action="{{route('product.destroy',$data->id)}}" method="POST">
                                             @csrf 
                                             @method('Delete')
                                             <button type="submit" class="btn btn-danger">Delete</button>

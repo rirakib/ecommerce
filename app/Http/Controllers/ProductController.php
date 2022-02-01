@@ -12,6 +12,8 @@ class ProductController extends Controller {
      */
     public function index() {
         //
+        $products = Product::orderBy('name','desc')->get();
+        return view('backend.product.index',compact('products'));
     }
 
     /**
@@ -49,6 +51,7 @@ class ProductController extends Controller {
             $product->product_offer_price = $request->input('product_offer_price');
             $product->offer_start_date = $request->input('offer_start_date');
             $product->offer_end_date = $request->input('offer_end_date');
+            $product->product_type = $request->input('product_type');
             $product->product_quantity = $request->input('product_quantity');
             $product->image=$request->input('image');
             $product->multiple_image = $request->input('multiple_image');
@@ -128,8 +131,10 @@ class ProductController extends Controller {
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function edit(Product $product) {
+    public function edit($id) {
         //
+        $product = Product::find($id);
+        return view('backend.product.edit',compact('product'));
     }
 
     /**
@@ -141,6 +146,40 @@ class ProductController extends Controller {
      */
     public function update(Request $request, Product $product) {
         //
+        $data=$request->all([ 'product_id', 'cat_id',
+             'subcat_id', 'color_id', 'brand_id', 'unit_id', 'size_id', 'name', 'short_description',
+             'description', 'price', 'product_quantity', 'product_stutus', 'product_code', 'product_offer_price',
+             'offer_start_date', 'offer_end_date', 'image', 'multiple_image'
+             ]);
+
+            if($file = $request->file('image'))
+        {
+            $extention = $file->getClientOriginalExtension();
+            $filename = time().'.'.$extention;
+            $file->move('images/product/title', $filename);
+            $product->image = $filename;
+        }
+        $images = array();
+        if($files = $request->file('multiple_image')){
+            $i=0;
+            foreach($files as $file){
+                $name = $file->getClientOriginalName();
+                $fileNameExtract = explode('.',$name);
+                $fileName=$fileNameExtract[0];
+                $fileName.=time();
+                $fileName.=$i;
+                $fileName.='.';
+                $fileName.=$fileNameExtract[1];
+                $file->move('images/product/display/',$fileName);
+                $image[]=$fileName;
+                $i++;
+            }
+            $product['multiple_image'] = implode("|",$image);
+        }
+        
+        $product->update($data);
+        return redirect()->back();
+
     }
 
     /**
@@ -149,7 +188,10 @@ class ProductController extends Controller {
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Product $product) {
+    public function destroy($id) {
         //
+        $product = Product::find($id);
+        $product->delete();
+        return redirect()->back();
     }
 }
