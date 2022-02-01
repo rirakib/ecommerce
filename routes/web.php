@@ -8,6 +8,7 @@ use App\Http\Controllers\ColorController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProductShowController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SizeController;
 use App\Http\Controllers\SubcategoryController;
@@ -51,7 +52,7 @@ Route::group(['middleware'=>['protected_home']],function(){
     Route::get('/return-policy',[FrontendController::class,'return'])->name('return');
 });
 
-
+Route::get('/home/product/show/{id}',[ProductShowController::class,'productShow'])->name('home.product.show');
 
 Route::get('/dashboard',[BackendController::class,'dashboard'])->name('dashboard');
 

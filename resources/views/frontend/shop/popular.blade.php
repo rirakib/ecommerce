@@ -8,13 +8,13 @@
             <li class="product-item">
                 <div class="product product-widget-style">
                     <div class="thumbnnail">
-                        <a href="" title="Radiant-360 R6 Wireless Omnidirectional Speaker [White]">
+                        <a href="{{route('home.product.show',$product->id)}}" title="Radiant-360 R6 Wireless Omnidirectional Speaker [White]">
                             <figure><img src="{{asset('images/product/title/'.$product->image)}}" alt="">
                             </figure>
                         </a>
                     </div>
                     <div class="product-info">
-                        <a href="#" class="product-name"><span>{{$product->name}}</span></a>
+                        <a href="{{route('home.product.show',$product->id)}}" class="product-name"><span>{{$product->name}}</span></a>
                         <div class="wrap-price"><span class="product-price">{{$product->price}}</span><b>TK</b></div>
                     </div>
                 </div>
