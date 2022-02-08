@@ -21,17 +21,18 @@
                         <div class="product-gallery">
                             <ul class="slides">
                                 @php
-                                    $images = explode('|',$product->multiple_image)
-                                    
+                                $images = explode('|',$product->multiple_image)
+
                                 @endphp
-        
+
                                 @foreach($images as $image)
                                 <li data-thumb="{{asset('images/product/display/'.$image)}}">
-                                    <img src="{{asset('images/product/display/'.$image)}}" alt="product thumbnail" />
+                                    <img src="{{asset('images/product/display/'.$image)}}" class="img-fluid display_img"
+                                        alt="product thumbnail" />
                                 </li>
                                 @endforeach
 
-                                
+
 
                             </ul>
                         </div>
@@ -50,7 +51,8 @@
                             <p>{{$product->short_description}}</p>
                         </div>
                         <div class="wrap-social">
-                            <a class="link-socail" href="#"><img src="{{asset('frontend/assets/images/social-list.png')}}" alt=""></a>
+                            <a class="link-socail" href="#"><img
+                                    src="{{asset('frontend/assets/images/social-list.png')}}" alt=""></a>
                         </div>
                         <div class="wrap-price"><span class="product-price">{{$product->price}}</span><b>Tk</b></div>
                         <div class="stock-info in-stock">
@@ -88,17 +90,29 @@
                                 <table class="shop_attributes">
                                     <tbody>
                                         <tr>
-                                            <th>Weight</th>
-                                            <td class="product_weight">1 kg</td>
+                                            <th>Category</th>
+                                            <td>
+                                                <p>{{$product->category->name}}</p>
+                                            </td>
                                         </tr>
                                         <tr>
-                                            <th>Dimensions</th>
-                                            <td class="product_dimensions">12 x 15 x 23 cm</td>
+                                            <th>Subcategory</th>
+                                            <td>
+                                                <p>{{$product->subcategory->name}}</p>
+                                            </td>
                                         </tr>
                                         <tr>
                                             <th>Color</th>
+                                            <td class="product_weight">{{$product->color->name}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Size</th>
+                                            <td class="product_dimensions">{{$product->size->name}} </td>
+                                        </tr>
+                                        <tr>
+                                            <th>Brand</th>
                                             <td>
-                                                <p>Black, Blue, Grey, Violet, Yellow</p>
+                                                <p>{{$product->brand->name}}</p>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -115,8 +129,9 @@
                                             <li class="comment byuser comment-author-admin bypostauthor even thread-even depth-1"
                                                 id="li-comment-20">
                                                 <div id="comment-20" class="comment_container">
-                                                    <img alt="" src="{{asset('frontend/assets/images/author-avata.jpg')}}" height="80"
-                                                        width="80">
+                                                    <img alt=""
+                                                        src="{{asset('frontend/assets/images/author-avata.jpg')}}"
+                                                        height="80" width="80">
                                                     <div class="comment-text">
                                                         <div class="star-rating">
                                                             <span class="width-80-percent">Rated <strong
@@ -255,8 +270,9 @@
                             <div class="product product-style-2 equal-elem ">
                                 <div class="product-thumnail">
                                     <a href="detail.html" title="T-Shirt Raw Hem Organic Boro Constrast Denim">
-                                        <figure><img src="{{asset('frontend/assets/images/products/digital_04.jpg')}}" width="214"
-                                                height="214" alt="T-Shirt Raw Hem Organic Boro Constrast Denim">
+                                        <figure><img src="{{asset('frontend/assets/images/products/digital_04.jpg')}}"
+                                                width="214" height="214"
+                                                alt="T-Shirt Raw Hem Organic Boro Constrast Denim">
                                         </figure>
                                     </a>
                                     <div class="group-flash">
@@ -288,12 +304,24 @@
 </main>
 
 <style>
-    .flex-control-thumbs img{
+    .flex-control-thumbs img {
         height: 50px;
         width: 50px;
         object-fit: cover;
         object-position: center;
-        margin:0px 10px
+        margin: 0px 10px
+    }
+
+    .product-gallery {
+        height: 500px;
+        width: 300px;
+    }
+
+    .display_img {
+        height: 500px;
+        width: 300px;
+        object-fit: cover;
+        object-position: center;
     }
 </style>
 
