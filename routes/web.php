@@ -10,6 +10,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductShowController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\SizeController;
 use App\Http\Controllers\SubcategoryController;
 use App\Http\Controllers\UnitController;
@@ -50,6 +51,7 @@ Route::group(['middleware'=>['protected_home']],function(){
     Route::get('/privacy',[FrontendController::class,'privacy'])->name('privacy');
     Route::get('/term-condition',[FrontendController::class,'term'])->name('term');
     Route::get('/return-policy',[FrontendController::class,'return'])->name('return');
+    Route::resource('/product/review',ReviewController::class,['name'=>'review']);
 });
 
 Route::get('/home/product/show/{id}',[ProductShowController::class,'productShow'])->name('home.product.show');

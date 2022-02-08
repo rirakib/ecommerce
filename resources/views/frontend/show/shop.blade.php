@@ -2,7 +2,6 @@
 @section('title','Show')
 @section('content')
 
-
 <main id="main" class="main-site">
 
     <div class="container">
@@ -123,32 +122,35 @@
                                 <div class="wrap-review-form">
 
                                     <div id="comments">
-                                        <h2 class="woocommerce-Reviews-title">01 review for <span>Radiant-360 R6
-                                                Chainsaw Omnidirectional [Orage]</span></h2>
+                                        <!-- <h2 class="woocommerce-Reviews-title">01 review for <span>Radiant-360 R6
+                                                Chainsaw Omnidirectional [Orage]</span></h2> -->
                                         <ol class="commentlist">
                                             <li class="comment byuser comment-author-admin bypostauthor even thread-even depth-1"
                                                 id="li-comment-20">
+                                                @foreach(DB::table('reviews')->where('product_id',$product->id)->get() as $review)
                                                 <div id="comment-20" class="comment_container">
                                                     <img alt=""
                                                         src="{{asset('frontend/assets/images/author-avata.jpg')}}"
                                                         height="80" width="80">
                                                     <div class="comment-text">
-                                                        <div class="star-rating">
-                                                            <span class="width-80-percent">Rated <strong
-                                                                    class="rating">5</strong> out of 5</span>
+                                                        <div class="ratting">
+                                                            <p>Rating <strong style="color:salmon">{{$review->ratting}}</strong></p>
                                                         </div>
                                                         <p class="meta">
-                                                            <strong class="woocommerce-review__author">admin</strong>
+                                                            @php
+                                                                $user = $review->user_id
+                                                            @endphp
+                                                            <strong class="woocommerce-review__author">User</strong>
                                                             <span class="woocommerce-review__dash">–</span>
                                                             <time class="woocommerce-review__published-date"
-                                                                datetime="2008-02-14 20:00">Tue, Aug 15, 2017</time>
+                                                                datetime="2008-02-14 20:00">{{ date('M j, Y', strtotime($review->created_at)) }}</time>
                                                         </p>
                                                         <div class="description">
-                                                            <p>Pellentesque habitant morbi tristique senectus et netus
-                                                                et malesuada fames ac turpis egestas.</p>
+                                                            <p>{{$review->description}}</p>
                                                         </div>
                                                     </div>
                                                 </div>
+                                                @endforeach
                                             </li>
                                         </ol>
                                     </div><!-- #comments -->
@@ -157,11 +159,12 @@
                                         <div id="review_form">
                                             <div id="respond" class="comment-respond">
 
-                                                <form action="#" method="post" id="commentform" class="comment-form"
+                                                <form action="{{route('review.store')}}" method="post" id="commentform" class="comment-form"
                                                     novalidate="">
+                                                    @csrf 
+                                                    <input type="hidden" name="product_id" value="{{$product->id}}">
                                                     <p class="comment-notes">
-                                                        <span id="email-notes">Your email address will not be
-                                                            published.</span> Required fields are marked <span
+                                                        <span id="email-notes">Select your rating <span
                                                             class="required">*</span>
                                                     </p>
                                                     <div class="comment-form-rating">
@@ -169,30 +172,26 @@
                                                         <p class="stars">
 
                                                             <label for="rated-1"></label>
-                                                            <input type="radio" id="rated-1" name="rating" value="1">
+                                                            <input type="radio" id="rated-1" name="ratting" value="1">
                                                             <label for="rated-2"></label>
-                                                            <input type="radio" id="rated-2" name="rating" value="2">
+                                                            <input type="radio" id="rated-2" name="ratting" value="2">
                                                             <label for="rated-3"></label>
-                                                            <input type="radio" id="rated-3" name="rating" value="3">
+                                                            <input type="radio" id="rated-3" name="ratting" value="3">
                                                             <label for="rated-4"></label>
-                                                            <input type="radio" id="rated-4" name="rating" value="4">
+                                                            <input type="radio" id="rated-4" name="ratting" value="4">
                                                             <label for="rated-5"></label>
-                                                            <input type="radio" id="rated-5" name="rating" value="5"
+                                                            <input type="radio" id="rated-5" name="ratting" value="5"
                                                                 checked="checked">
                                                         </p>
                                                     </div>
-                                                    <p class="comment-form-author">
-                                                        <label for="author">Name <span class="required">*</span></label>
-                                                        <input id="author" name="author" type="text" value="">
-                                                    </p>
                                                     <p class="comment-form-email">
                                                         <label for="email">Email <span class="required">*</span></label>
-                                                        <input id="email" name="email" type="email" value="">
+                                                        <input id="email" name="email" type="email" value="{{session()->get('email')}}">
                                                     </p>
                                                     <p class="comment-form-comment">
                                                         <label for="comment">Your review <span class="required">*</span>
                                                         </label>
-                                                        <textarea id="comment" name="comment" cols="45"
+                                                        <textarea id="comment" name="description" cols="45"
                                                             rows="8"></textarea>
                                                     </p>
                                                     <p class="form-submit">
